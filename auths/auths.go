@@ -24,7 +24,7 @@ func AuthorizeApp(consumerKey,consumerSecret string) {
 
 	//consumer.Debug(true)
 
-	requestToken, url, err := consumer.GetRequestTokenAndUrl("demspirals.armalabs.com")
+	requestToken, url, err := consumer.GetRequestTokenAndUrl(beego.AppConfig.String("domain"))
 	if err != nil {
 		log.Fatal(err)
 	}

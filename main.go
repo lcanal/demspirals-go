@@ -15,6 +15,7 @@ func main() {
 		fmt.Println("Error: ",err)
 		os.Exit(1)
 	}
+
 	auths.AuthorizeApp(consumerKey,consumerSecret)
 	beego.Run()
 }
