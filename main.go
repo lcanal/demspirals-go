@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"fmt"
 	"os"
 	_ "demspirals/routers"
@@ -10,17 +9,12 @@ import (
 )
 
 func main() {
-	var consumerKey *string = flag.String("consumerKey", "", "Consumer key from Yahoo App")
-	var consumerSecret *string = flag.String("consumerSecret", "", "Consumer secret from Yahoo app")
+	consumerKey,consumerSecret,err := auths.FindCreds()
 
-	flag.Parse()
-
-	if len(*consumerKey) == 0 || len(*consumerSecret) == 0 {
-		fmt.Println("You must set the --consumerKey and --consumerSecret flags.")
-		fmt.Println("---")
+	if (err != nil ){
+		fmt.Println("Error: ",err)
 		os.Exit(1)
 	}
-
 	auths.AuthorizeApp(consumerKey,consumerSecret)
 	beego.Run()
 }
